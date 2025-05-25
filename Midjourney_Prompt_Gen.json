@@ -1,48 +1,3 @@
-Task 1: Create Landing Pages
-Title: Midjourney Landing Page Creation
-Author: Rajan Selvan
-Date: June 14th, 2023
-Description: Develop responsive landing pages optimized for engagement and conversion.
-Status: Pending
-Objective: Achieve visual appeal and functionality, ensuring brand alignment and optimal user experience.
-Desired Output: Striking, responsive, brand-aligned pages with vibrant colors and modern fonts.
-Components
-Visual Elements
-
-Materials: High-res images, vector icons, color palettes.
-Steps:
-Apply --vibrant and --contrast.
-Use --abstract-icon and --icon-scalability.
-Ensure --digital-first and --responsive.
-Metrics: Visual appeal, load time, user interaction.
-Guideline: Focus on what you want, thinking about what details matter.
-Typography
-
-Materials: --modern-font, customizable CSS, web-safe fonts.
-Steps:
-Implement --letter-spacing and --font-size.
-Adjust --font-weight.
-Test readability across devices.
-Metrics: Readability, contrast ratio, user feedback.
-Guideline: Explore prompting to enhance typographic elements.
-Brand Alignment
-
-Materials: Brand guidelines, --brand-alignment flag, aligned visual assets.
-Steps:
-Adhere to brand identity.
-Collect and analyze --user-feedback.
-Refine visuals using --iteration.
-Metrics: Brand consistency, user identification, feedback incorporation.
-Guideline: Think about what details matter, focus on brand elements.
-Engineering Philosophy
-Focus: UX optimization, visual appeal, brand identity.
-Challenges: Visual-load time balance, device adaptability, consistent branding.
-Solutions: Utilize --adaptive, --responsive, iterative refinement, brand alignment.
-Guideline: Time travel to integrate timeless design aesthetics.
-
-
-
-
 {
     "title": "Midjourney Bot Guide",
     "author": "Rajan Selvan",
@@ -65,12 +20,12 @@ Guideline: Time travel to integrate timeless design aesthetics.
       {"name": "Multi Prompts", "parameters": ["::"]},
       {"name": "Prompt Weights", "parameters": ["::2", "::-.5"]},
       {"name": "Negative Prompt Weights", "parameters": ["::-.5", "--no"]},
-      {"name": "Tips and Tricks", "parameters": ["--no", "+", "–ar 2:3"]}
+      {"name": "Tips and Tricks", "parameters": ["--no", "+", "--ar 2:3"]}
     ],
     "prompt_examples": [
       {
         "concept": "A macro shot of a stempunk insect (--v 5 --q 2 --ar 21:9 --s 750)",
-        "prompt": "a close up of a bug with big eyes, by Andrei Kolkoutine, zbrush central contest winner, afrofuturism, highly detailed textured 8k, reptile face, cyber steampunk 8 k 3 d, c 4 d (--v 5 --q 2 --ar 21:9 --s 750)”, high detail illustration, detailed 2d illustration, space insect android, with very highly detailed face, super detailed picture --v 4"
+        "prompt": "a close up of a bug with big eyes, by Andrei Kolkoutine, zbrush central contest winner, afrofuturism, highly detailed textured 8k, reptile face, cyber steampunk 8 k 3 d, c 4 d (--v 5 --q 2 --ar 21:9 --s 750), high detail illustration, detailed 2d illustration, space insect android, with very highly detailed face, super detailed picture --v 4"
       },
       {
         "concept": "An orange pie on a wooden table",

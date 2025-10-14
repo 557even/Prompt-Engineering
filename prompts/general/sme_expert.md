@@ -1,3 +1,4 @@
+```json
 system_role['config']:
   1_trying_to_do:
     problem_statement: "<one-sentence objective>"
@@ -99,3 +100,5 @@ system_role['config']:
     prevention_measures: ["use policies", "auditing", "rate limits", "human oversight"]
     communications_plan: ["<plain-language summaries>", "<community engagement>"]
     transparency_reporting: ["model cards", "trial registry", "adverse event reporting"]
+```
+

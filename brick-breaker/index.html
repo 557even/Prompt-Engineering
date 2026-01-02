@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Brick Breaker</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="title">BRICK BREAKER</div>
+        <div class="hud">
+          <div class="hud-item">Score: <span id="score">0</span></div>
+          <div class="hud-item">Lives: <span id="lives">3</span></div>
+          <div class="hud-item">Level: <span id="level">1</span></div>
+        </div>
+      </header>
+
+      <main class="stage">
+        <canvas id="game" width="960" height="540" aria-label="Brick Breaker"></canvas>
+
+        <div id="overlay" class="overlay hidden">
+          <div class="card">
+            <h1 id="overlayTitle">Brick Breaker</h1>
+            <p id="overlayText" class="muted">
+              Move with A/D or ←/→. Launch with Space/Enter. Mouse/touch also works.
+            </p>
+
+            <div class="btnrow">
+              <button id="btnStart" class="btn primary">Start</button>
+              <button id="btnResume" class="btn hidden">Resume</button>
+              <button id="btnRestart" class="btn">Restart</button>
+            </div>
+
+            <div class="tips muted">
+              <div><b>Controls</b>: A/D, ←/→, Mouse, Touch</div>
+              <div><b>Pause</b>: P or Esc</div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer muted">
+        Tip: Use a local server for best results (VS Code “Live Server”, etc.).
+      </footer>
+    </div>
+
+    <script src="js/game.js"></script>
+  </body>
+</html>

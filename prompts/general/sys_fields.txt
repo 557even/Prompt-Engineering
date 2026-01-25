@@ -1,0 +1,65 @@
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ DISTILL.PROMPT  v1  (PARAMETERIZED / GENERALIZED TEMPLATE)                   │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ INPUTS                                                                        │
+│   {SOURCE}            : "{source_url_or_text}"                                │
+│   {SOURCE_TYPE}       : "url" | "text" | "pdf" | "html"                       │
+│   {TOPIC}             : "{topic_or_title_optional}"                           │
+│   {AUDIENCE}          : "{audience}"                                          │
+│   {GOAL}              : "{what_user_wants}"                                   │
+│                                                                              │
+│ OUTPUT                                                                         │
+│   {FORMAT}            : "v" | "bullets" | "table" | "json" | "yaml" | "md"     │
+│   {LENGTH}            : "xs" | "s" | "m" | "l"                                 │
+│   {TONE}              : "neutral" | "technical" | "casual"                     │
+│   {INCLUDE_CITATIONS} : true | false                                          │
+│   {CITATION_STYLE}    : "inline" | "endnotes"                                 │
+│                                                                              │
+│ CONTENT CONTROLS                                                               │
+│   {SCOPE}             : "full" | "key_points" | "how_to" | "checklist"         │
+│   {FOCUS}             : ["{keyword1}","{keyword2}",... ]                       │
+│   {EXCLUDE}           : ["{omit1}","{omit2}",... ]                             │
+│   {STRUCTURE}         : ["overview","sections","tips","gotchas","checklist"]  │
+│   {SECTION_LIMIT}     : {n_sections_int}                                       │
+│   {BULLET_LIMIT}      : {n_bullets_per_section_int}                            │
+│   {QUOTE_LIMIT_WORDS} : {max_words_per_quote_int}                              │
+│                                                                              │
+│ EXTRACTION RULES                                                               │
+│   {EXTRACT}           : ["steps","requirements","locations","numbers","names"] │
+│   {NORMALIZE}         : ["dates","units","terminology"]                        │
+│   {AMBIGUITY_POLICY}  : "flag" | "infer_and_flag" | "best_effort"              │
+│   {ERROR_POLICY}      : "explain_gaps" | "silent"                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+{PROMPT}
+
+You are given {SOURCE_TYPE} content at {SOURCE}. Produce a distilled output for {AUDIENCE}.
+
+Objective:
+- {GOAL}
+- Respect {SCOPE}. Prioritize {FOCUS}. Exclude {EXCLUDE}.
+
+Method:
+1) Identify the document’s purpose, scope boundaries, and structure.
+2) Extract only load-bearing information (definitions, steps, constraints, key claims, and any numbers/dates).
+3) Normalize terminology per {NORMALIZE}. Keep phrasing compact.
+4) If something is unclear and {AMBIGUITY_POLICY} requires it, explicitly flag uncertainty.
+
+Output requirements:
+- Format must be exactly: {FORMAT}
+- Length target: {LENGTH}
+- Use structure: {STRUCTURE} (max {SECTION_LIMIT} sections)
+- Bullets per section ≤ {BULLET_LIMIT}
+- Do not exceed {QUOTE_LIMIT_WORDS} words for any direct quote.
+- If {INCLUDE_CITATIONS} is true: add citations in {CITATION_STYLE} style pointing to source locations (URL anchors, headings, or line/section identifiers if available). If false: no citations.
+
+Content to extract (if present), in this order:
+A) One-line identification: title / author / version / updated date (if present)
+B) “What this is” and “What this is not” (scope boundaries)
+C) Key items (steps/checkpoints/locations/secrets/etc. depending on {EXTRACT})
+D) Notable constraints, prerequisites, edge cases, and common mistakes (“gotchas”)
+E) Minimal checklist suitable for verification
+
+Failure mode:
+- If you cannot access {SOURCE} or the content is missing, follow {ERROR_POLICY} by stating what is unavailable and what you *can* do from provided text.
+

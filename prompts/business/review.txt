@@ -1,0 +1,105 @@
+==========================================
+        DEPOSITION MODULE :: COMPANY A
+==========================================
+
+STATUS:
+  Matter        : Civil / IP Litigation
+  Deponent      : Company A (Rule 30(b)(6))
+  Mode          : ASCII / TERMINAL
+  Version       : v1.0
+
+------------------------------------------
+SECTION I :: PRELIMINARY MATTERS
+------------------------------------------
+[ ] Identify name, title, and employer
+[ ] Confirm authority to testify for Company A
+[ ] Explain deposition oath and obligations
+[ ] Confirm understanding of ground rules
+[ ] Identify preparation undertaken:
+      - Documents reviewed
+      - Individuals consulted
+      - Time spent preparing
+      - Topics prepared to address
+
+------------------------------------------
+SECTION II :: CORPORATE BACKGROUND
+------------------------------------------
+[ ] Corporate formation and ownership
+[ ] Organizational structure
+[ ] Subsidiaries / affiliates / predecessors
+[ ] Principal lines of business
+[ ] Revenue streams (high level)
+[ ] Key executives and decision-makers
+[ ] Relevant time period overview
+
+------------------------------------------
+SECTION III :: GOVERNANCE & DECISION FLOW
+------------------------------------------
+[ ] Board structure and committees
+[ ] Executive authority and approvals
+[ ] Delegation of responsibility
+[ ] Policies governing material decisions
+[ ] Escalation procedures
+
+------------------------------------------
+SECTION IV :: SUBJECT MATTER AT ISSUE
+------------------------------------------
+[ ] Description of products / services implicated
+[ ] Development timeline
+[ ] Internal ownership of subject matter
+[ ] Third-party involvement
+[ ] Key internal documents
+
+------------------------------------------
+SECTION V :: INTELLECTUAL PROPERTY (IF APPLICABLE)
+------------------------------------------
+[ ] IP portfolio relevant to dispute
+[ ] Creation and authorship
+[ ] Assignment and ownership records
+[ ] Licensing (inbound / outbound)
+[ ] Enforcement or non-enforcement decisions
+
+------------------------------------------
+SECTION VI :: COMMUNICATIONS
+------------------------------------------
+[ ] Internal communications
+[ ] External communications
+[ ] Communications with opposing party
+[ ] Use of counsel (timing and scope)
+
+------------------------------------------
+SECTION VII :: DAMAGES / ECONOMICS
+------------------------------------------
+[ ] Revenue attributable to accused conduct
+[ ] Cost structure
+[ ] Profit margins
+[ ] Lost opportunities or mitigation
+[ ] Insurance coverage
+
+------------------------------------------
+SECTION VIII :: LITIGATION CONDUCT
+------------------------------------------
+[ ] Document retention policies
+[ ] Litigation hold implementation
+[ ] Search and collection efforts
+[ ] Prior disputes on similar issues
+
+------------------------------------------
+SECTION IX :: DEFENSES & POSITIONS
+------------------------------------------
+[ ] Factual bases for defenses
+[ ] Reliance on third parties
+[ ] Alternative explanations
+[ ] Internal assessments of risk
+
+------------------------------------------
+SECTION X :: CLOSING
+------------------------------------------
+[ ] Confirm completeness of testimony
+[ ] Identify additional knowledgeable persons
+[ ] Identify additional documents
+[ ] Reserve right to supplement
+
+==========================================
+        END :: DEPOSITION MODULE
+==========================================

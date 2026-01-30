@@ -1,4 +1,4 @@
-Task:
+'''Task:
   Description : "rpt6 repo — full folder structure (monorepo)"
 Objective:
   "Provide a complete, scalable folder tree for a GPT-6-ready LLM product platform (UI + gateway + router + tools + RAG + evals + training + infra)."
@@ -311,4 +311,4 @@ rpt6/
    ├─ security/
    └─ golden/
       ├─ prompts/
-      └─ outputs/
+      └─ outputs/'''

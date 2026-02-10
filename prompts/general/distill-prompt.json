@@ -1,0 +1,183 @@
+json
+{
+  "distill_prompt_config": {
+    "meta": {
+      "name": "DistillPrompt_V1",
+      "version": "1.0.0",
+      "description": "Parameterized template for content distillation with comprehensive extraction controls",
+      "domain": [
+        "content_summarization",
+        "information_extraction",
+        "document_processing"
+      ]
+    },
+    "input_specification": {
+      "source": {
+        "type": "{SOURCE_TYPE}",
+        "value": "{SOURCE}",
+        "supported_types": ["url", "text", "pdf", "html"],
+        "topic": "{TOPIC}",
+        "description": "Source content to distill"
+      },
+      "audience_context": {
+        "audience": "{AUDIENCE}",
+        "goal": "{GOAL}",
+        "description": "Target audience and distillation objective"
+      }
+    },
+    "output_controls": {
+      "format": "{FORMAT}",
+      "supported_formats": ["v", "bullets", "table", "json", "yaml", "md"],
+      "length": "{LENGTH}",
+      "supported_lengths": ["xs", "s", "m", "l"],
+      "tone": "{TONE}",
+      "supported_tones": ["neutral", "technical", "casual"],
+      "citation_settings": {
+        "include_citations": "{INCLUDE_CITATIONS}",
+        "citation_style": "{CITATION_STYLE}",
+        "supported_styles": ["inline", "endnotes"]
+      }
+    },
+    "content_controls": {
+      "scope": "{SCOPE}",
+      "supported_scopes": ["full", "key_points", "how_to", "checklist"],
+      "focus": "{FOCUS}",
+      "exclude": "{EXCLUDE}",
+      "structure": "{STRUCTURE}",
+      "supported_structures": ["overview", "sections", "tips", "gotchas", "checklist"],
+      "limitations": {
+        "section_limit": "{SECTION_LIMIT}",
+        "bullet_limit": "{BULLET_LIMIT}",
+        "quote_limit_words": "{QUOTE_LIMIT_WORDS}"
+      }
+    },
+    "extraction_rules": {
+      "extract_categories": "{EXTRACT}",
+      "supported_categories": ["steps", "requirements", "locations", "numbers", "names"],
+      "normalization": "{NORMALIZE}",
+      "supported_normalizations": ["dates", "units", "terminology"],
+      "policies": {
+        "ambiguity_policy": "{AMBIGUITY_POLICY}",
+        "supported_ambiguity_policies": ["flag", "infer_and_flag", "best_effort"],
+        "error_policy": "{ERROR_POLICY}",
+        "supported_error_policies": ["explain_gaps", "silent"]
+      }
+    },
+    "processing_methodology": {
+      "step_1": "Identify document purpose, scope boundaries, and structure",
+      "step_2": "Extract load-bearing information (definitions, steps, constraints, key claims, numbers/dates)",
+      "step_3": "Normalize terminology per normalization settings",
+      "step_4": "Flag uncertainty based on ambiguity policy",
+      "principles": ["compact_phrasing", "information_density", "fidelity_to_source"]
+    },
+    "content_extraction_sequence": {
+      "A": "One-line identification (title/author/version/date)",
+      "B": "Scope boundaries (what this is/is not)",
+      "C": "Key items (steps/checkpoints/locations/secrets)",
+      "D": "Constraints and gotchas (prerequisites, edge cases, common mistakes)",
+      "E": "Minimal verification checklist"
+    },
+    "failure_modes": {
+      "source_inaccessibility": "Follow error policy when source unavailable",
+      "content_gaps": "State limitations and available information",
+      "policy_compliance": "Strict adherence to specified policies"
+    },
+    "quality_requirements": {
+      "format_fidelity": "Output must exactly match specified format",
+      "length_compliance": "Respect length targets and limitations",
+      "citation_handling": "Proper citation management per settings",
+      "structure_adherence": "Follow prescribed structure and section limits"
+    }
+  }
+}
+{
+  "distill_prompt_config": {
+    "meta": {
+      "name": "DistillPrompt_V1",
+      "version": "1.0.0",
+      "description": "Parameterized template for content distillation with comprehensive extraction controls",
+      "domain": [
+        "content_summarization",
+        "information_extraction",
+        "document_processing"
+      ]
+    },
+    "input_specification": {
+      "source": {
+        "type": "{SOURCE_TYPE}",
+        "value": "{SOURCE}",
+        "supported_types": ["url", "text", "pdf", "html"],
+        "topic": "{TOPIC}",
+        "description": "Source content to distill"
+      },
+      "audience_context": {
+        "audience": "{AUDIENCE}",
+        "goal": "{GOAL}",
+        "description": "Target audience and distillation objective"
+      }
+    },
+    "output_controls": {
+      "format": "{FORMAT}",
+      "supported_formats": ["v", "bullets", "table", "json", "yaml", "md"],
+      "length": "{LENGTH}",
+      "supported_lengths": ["xs", "s", "m", "l"],
+      "tone": "{TONE}",
+      "supported_tones": ["neutral", "technical", "casual"],
+      "citation_settings": {
+        "include_citations": "{INCLUDE_CITATIONS}",
+        "citation_style": "{CITATION_STYLE}",
+        "supported_styles": ["inline", "endnotes"]
+      }
+    },
+    "content_controls": {
+      "scope": "{SCOPE}",
+      "supported_scopes": ["full", "key_points", "how_to", "checklist"],
+      "focus": "{FOCUS}",
+      "exclude": "{EXCLUDE}",
+      "structure": "{STRUCTURE}",
+      "supported_structures": ["overview", "sections", "tips", "gotchas", "checklist"],
+      "limitations": {
+        "section_limit": "{SECTION_LIMIT}",
+        "bullet_limit": "{BULLET_LIMIT}",
+        "quote_limit_words": "{QUOTE_LIMIT_WORDS}"
+      }
+    },
+    "extraction_rules": {
+      "extract_categories": "{EXTRACT}",
+      "supported_categories": ["steps", "requirements", "locations", "numbers", "names"],
+      "normalization": "{NORMALIZE}",
+      "supported_normalizations": ["dates", "units", "terminology"],
+      "policies": {
+        "ambiguity_policy": "{AMBIGUITY_POLICY}",
+        "supported_ambiguity_policies": ["flag", "infer_and_flag", "best_effort"],
+        "error_policy": "{ERROR_POLICY}",
+        "supported_error_policies": ["explain_gaps", "silent"]
+      }
+    },
+    "processing_methodology": {
+      "step_1": "Identify document purpose, scope boundaries, and structure",
+      "step_2": "Extract load-bearing information (definitions, steps, constraints, key claims, numbers/dates)",
+      "step_3": "Normalize terminology per normalization settings",
+      "step_4": "Flag uncertainty based on ambiguity policy",
+      "principles": ["compact_phrasing", "information_density", "fidelity_to_source"]
+    },
+    "content_extraction_sequence": {
+      "A": "One-line identification (title/author/version/date)",
+      "B": "Scope boundaries (what this is/is not)",
+      "C": "Key items (steps/checkpoints/locations/secrets)",
+      "D": "Constraints and gotchas (prerequisites, edge cases, common mistakes)",
+      "E": "Minimal verification checklist"
+    },
+    "failure_modes": {
+      "source_inaccessibility": "Follow error policy when source unavailable",
+      "content_gaps": "State limitations and available information",
+      "policy_compliance": "Strict adherence to specified policies"
+    },
+    "quality_requirements": {
+      "format_fidelity": "Output must exactly match specified format",
+      "length_compliance": "Respect length targets and limitations",
+      "citation_handling": "Proper citation management per settings",
+      "structure_adherence": "Follow prescribed structure and section limits"
+    }
+  }
+}

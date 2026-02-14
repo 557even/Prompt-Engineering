@@ -1,0 +1,447 @@
+```
+========================================== PROGRAMMING ASCII TERMINAL ==========================================
+STATUS:
+  Health          : OK
+  Tasks           : Expanded detailed brain configuration generation
+  Objective       : Full anatomical, functional and clinical specification
+  Results         : Config assembled
+------------------------------------------ SYSTEM VARIABLES:
+  User            : Senior Corneal Engineer
+  Session ID      : 20260214-003
+  Uptime          : 00:05:12
+  Mode            : Config
+  Prompt Mode     : BrainConfig
+  Learning Rate   : N/A
+  Loop Count      : 2
+------------------------------------------
+> BRAIN_DETAILED_CONFIG
+{
+  "identifiers": {
+    "Latin": "cerebrum",
+    "Greek": "ἐγκέφαλος (enképhalos)",
+    "TA98": "A14.1.03.001",
+    "TA2": "5415",
+    "FMA": "50801"
+  },
+  "physical_properties": {
+    "average_mass_kg": {
+      "male": 1.3,
+      "female": 1.3,
+      "range": "1.2–1.4"
+    },
+    "average_volume_cm3": {
+      "male": 1260,
+      "female": 1130,
+      "range": "1130–1260"
+    },
+    "density_g_per_cm3": 1.05,
+    "water_content_percent": 78,
+    "neuron_count_billion": 86,
+    "glia_count_billion": 86,
+    "gray_matter_percent": 40,
+    "white_matter_percent": 60
+  },
+  "gross_anatomy": {
+    "cerebrum": {
+      "description": "Largest brain part, contains the two cerebral hemispheres",
+      "components": [
+        "cerebral_hemispheres",
+        "cerebral_cortex",
+        "white_matter"
+      ]
+    },
+    "brainstem": {
+      "components": [
+        "midbrain",
+        "pons",
+        "medulla_oblongata"
+      ]
+    },
+    "cerebellum": {
+      "lobes": [
+        "anterior_lobe",
+        "posterior_lobe",
+        "flocculonodular_lobe"
+      ],
+      "peduncles": [
+        "superior_cerebellar_peduncle",
+        "middle_cerebellar_peduncle",
+        "inferior_cerebellar_peduncle"
+      ]
+    }
+  },
+  "cerebral_hemispheres": {
+    "outer_cortex": {
+      "grey_matter": {
+        "layers": {
+          "neocortex": "6_layers",
+          "allocortex": "3‑4_layers"
+        }
+      }
+    },
+    "inner_core": {
+      "white_matter": "myelinated axonal tracts"
+    }
+  },
+  "lobes": [
+    {
+      "name": "frontal_lobe",
+      "functions": [
+        "executive_functions",
+        "planning",
+        "reasoning",
+        "abstract_thought",
+        "self_control"
+      ]
+    },
+    {
+      "name": "parietal_lobe",
+      "functions": [
+        "somatosensory_processing",
+        "spatial_orientation",
+        "integration_of_touch_and_proprioception"
+      ]
+    },
+    {
+      "name": "temporal_lobe",
+      "functions": [
+        "auditory_processing",
+        "language_comprehension",
+        "episodic_memory",
+        "semantic_memory"
+      ]
+    },
+    {
+      "name": "occipital_lobe",
+      "functions": [
+        "visual_processing",
+        "visual_spatial_analysis",
+        "colour_recognition"
+      ]
+    },
+    {
+      "name": "central_lobe",
+      "alternate_names": [
+        "precentral_gyrus",
+        "postcentral_gyrus"
+      ],
+      "functions": [
+        "primary_motor_cortex",
+        "primary_somatosensory_cortex"
+      ]
+    },
+    {
+      "name": "limbic_lobe",
+      "functions": [
+        "emotion",
+        "memory_encoding",
+        "autonomic_regulation"
+      ]
+    },
+    {
+      "name": "insular_lobe",
+      "functions": [
+        "interoception",
+        "taste",
+        "visceral_sensation"
+      ]
+    }
+  ],
+  "cortical_areas": [
+    {
+      "name": "primary_motor_cortex",
+      "location": "precentral_gyrus",
+      "primary_function": "voluntary_movement_initiation"
+    },
+    {
+      "name": "primary_somatosensory_cortex",
+      "location": "postcentral_gyrus",
+      "primary_function": "body_surface_sensation"
+    },
+    {
+      "name": "visual_cortex",
+      "location": "occipital_lobe",
+      "primary_function": "visual_perception"
+    },
+    {
+      "name": "auditory_cortex",
+      "location": "temporal_lobe_superior_temporal_gyrus",
+      "primary_function": "sound_processing"
+    },
+    {
+      "name": "Broca's_area",
+      "location": "left_frontal_lobe (inferior_frontal_gyrus)",
+      "primary_function": "speech_production"
+    },
+    {
+      "name": "Wernicke's_area",
+      "location": "left_temporal_lobe (posterior_superior_temporal_gyrus)",
+      "primary_function": "language_comprehension"
+    },
+    {
+      "name": "prefrontal_cortex",
+      "location": "anterior_frontal_lobe",
+      "primary_function": "high‑level_cognition_and_decision_making"
+    }
+  ],
+  "subcortical_structures": {
+    "basal_ganglia": [
+      "caudate_nucleus",
+      "putamen",
+      "globus_pallidus",
+      "substantia_nigra",
+      "subthalamic_nucleus"
+    ],
+    "thalamus": {
+      "description": "relay station for sensory and motor signals",
+      "major_nuclei": [
+        "ventral_postero_lateral_nucleus",
+        "medial_geniculate_body",
+        "lateral_geniculate_body",
+        "anterior_nucleus",
+        "intralaminar_nuclei"
+      ]
+    },
+    "hypothalamus": {
+      "functions": [
+        "neuroendocrine_control",
+        "autonomic_regulation",
+        "temperature_homeostasis",
+        "hunger_and_thirst"
+      ],
+      "key_structures": [
+        "supraoptic_nucleus",
+        "paraventricular_nucleus",
+        "mammillary_bodies",
+        "arcuate_nucleus",
+        "ventromedial_nucleus"
+      ]
+    },
+    "limbic_system": [
+      "hippocampus",
+      "amygdala",
+      "cingulate_gyrus",
+      "parahippocampal_gyrus",
+      "mammillary_bodies",
+      "septal_nuclei",
+      "fornix"
+    ],
+    "brainstem_nuclei": [
+      "cranial_nerve_nuclei (10_pairs)",
+      "reticular_formation",
+      "raphe_nuclei",
+      "vestibular_nuclei",
+      "olfactory_nuclei"
+    ]
+  },
+  "ventricular_system_csf": {
+    "lateral_ventricles": {
+      "count": 2,
+      "components": [
+        "frontal_horn",
+        "body",
+        "occipital_horn",
+        "temporal_horn"
+      ]
+    },
+    "third_ventricle": {
+      "location": "midline_between_the_thalami"
+    },
+    "cerebral_aqueduct": {
+      "connects": ["third_ventricle","fourth_ventricle"]
+    },
+    "fourth_ventricle": {
+      "location": "posterior_brainstem_between_pontine_and_medullary_levels"
+    },
+    "csf_production": {
+      "sites": [
+        "choroid_plexus_in_all_ventricles"
+      ],
+      "total_volume_ml": 150,
+      "turnover_hours": 5.5
+    }
+  },
+  "meninges": {
+    "layers": [
+      "dura_mater (peripheral & meningeal layers)",
+      "arachnoid_mater",
+      "pia_mater"
+    ],
+    "subarachnoid_space": "contains CSF and major cerebral veins",
+    "subarachnoid_lymphatic_like_membrane": {
+      "status": "proposed_2023",
+      "function": "additional CSF drainage pathway"
+    }
+  },
+  "vascular_supply": {
+    "arterial": {
+      "anterior_circulation": [
+        "internal_carotid_arteries",
+        "anterior_cerebral_artery",
+        "middle_cerebral_artery",
+        "anterior_communicating_artery"
+      ],
+      "posterior_circulation": [
+        "vertebral_arteries",
+        "basilar_artery",
+        "posterior_cerebral_artery",
+        "posterior_communicating_artery",
+        "superior_cerebellar_artery",
+        "anterior_cerebellar_artery",
+        "inferior_cerebellar_artery"
+      ],
+      "circle_of_Willis_components": [
+        "ACom",
+        "PCom",
+        "basilar_artery",
+        "internal_carotid_arteries",
+        "anterior_cerebral_arteries",
+        "posterior_cerebral_arteries"
+      ]
+    },
+    "venous": {
+      "superior_sagittal_sinus": {},
+      "straight_sinus": {},
+      "transverse_sinuses": [
+        "left_transverse",
+        "right_transverse"
+      ],
+      "sigmoid_sinuses": [
+        "left_sigmoid",
+        "right_sigmoid"
+      ],
+      "cerebral_veins": [
+        "superficial_cerebral_veins",
+        "deep_cerebral_veins"
+      ],
+      "drainage_pathway": [
+        "confluence_of_sinuses",
+        "internal_jugular_veins"
+      ]
+    }
+  },
+  "cranial_nerves": [
+    {"pair":"I","name":"olfactory","emerges_from":"olfactory_bulb"},
+    {"pair":"II","name":"optic","emerges_from":"optic_chiasm"},
+    {"pair":"III","name":"oculomotor","nucleus_location":"midbrain"},
+    {"pair":"IV","name":"trochlear","nucleus_location":"midbrain"},
+    {"pair":"V","name":"trigeminal","nucleus_location":"pons"},
+    {"pair":"VI","name":"abducens","nucleus_location":"pons"},
+    {"pair":"VII","name":"facial","nucleus_location":"pons"},
+    {"pair":"VIII","name":"vestibulocochlear","nucleus_location":"pons/medulla"},
+    {"pair":"IX","name":"glossopharyngeal","nucleus_location":"medulla"},
+    {"pair":"X","name":"vagus","nucleus_location":"medulla"},
+    {"pair":"XI","name":"accessory","nucleus_location":"medulla/spinal_cord"},
+    {"pair":"XII","name":"hypoglossal","nucleus_location":"medulla"}
+  ],
+  "cellular_components": {
+    "neurons": {
+      "total_billion": 86,
+      "major_types": [
+        "pyramidal_cells (including Betz cells)",
+        "interneurons",
+        "Purkinje_cells",
+        "motor_neurons (upper & lower)",
+        "sensory_neurons (dorsal_root_relays)",
+        "granule_cells (cerebellum)"
+      ]
+    },
+    "glial_cells": {
+      "total_billion": 86,
+      "types": [
+        "astrocytes",
+        "oligodendrocytes",
+        "microglia",
+        "ependymal_cells",
+        "mast_cells (meningeal)"
+      ]
+    }
+  },
+  "neurochemistry": {
+    "excitatory": [
+      {"neurotransmitter":"glutamate","role":"primary_excitatory_signal"}
+    ],
+    "inhibitory": [
+      {"neurotransmitter":"GABA","role":"major_inhibitory_signal"}
+    ],
+    "modulatory": [
+      {"neurotransmitter":"dopamine","functions":["reward","movement"]},
+      {"neurotransmitter":"serotonin","functions":["mood","sleep"]},
+      {"neurotransmitter":"acetylcholine","functions":["attention","memory"]},
+      {"neurotransmitter":"norepinephrine","functions":["arousal","stress_response"]}
+    ]
+  },
+  "metabolism_and_energy": {
+    "oxygen_consumption_percent_body": 20,
+    "glucose_usage_percent_body": 20,
+    "average_glucose_consumption_mg_per_min": 6000,
+    "energy_source": "primarily glucose, ketone bodies in fasting",
+    "glymphatic_clearance": {
+      "peak_during": "deep_sleep",
+      "function":"waste_removal (beta‑amyloid, tau, metabolic_byproducts)"
+    }
+  },
+  "development": {
+    "origin": "neural tube (ectoderm)",
+    "primary_vesicles": [
+      "prosencephalon (forebrain)",
+      "mesencephalon (midbrain)",
+      "rhombencephalon (hindbrain)"
+    ],
+    "secondary_vesicles": [
+      "telencephalon",
+      "diencephalon",
+      "mesencephalon (remains)",
+      "metencephalon",
+      "myelencephalon"
+    ],
+    "key_timelines_weeks": {
+      "3": "neural tube closure",
+      "4": "primary vesicle formation",
+      "5": "secondary vesicle formation"
+    },
+    "cortical_folding_onset": "≈24 weeks gestation (gyrification begins)",
+    "gene_of_interest_gyrification": "ARHGAP11B (human‑specific expansion)"
+  },
+  "clinical_notes": {
+    "common_pathologies": [
+      "stroke (ischemic & hemorrhagic)",
+      "neurodegenerative_diseases (Alzheimer’s, Parkinson’s, MS)",
+      "primary_and_secondary_brain_tumors (glioma, meningioma, metastases)",
+      "traumatic_brain_injury",
+      "infection (meningitis, encephalitis)",
+      "seizure_disorders (epilepsy)"
+    ],
+    "protective_mechanisms": [
+      "blood‑brain barrier (tight junctions, pericytes)",
+      "cerebrospinal_fluid_circulation",
+      "glymphatic_system",
+      "glial_scarring (limited repair)"
+    ],
+    "risk_factors": [
+      "hypertension",
+      "hyperlipidemia",
+      "smoking",
+      "genetic_predisposition",
+      "age"
+    ],
+    "diagnostic_modalities": [
+      "MRI",
+      "CT",
+      "fMRI",
+      "PET",
+      "EEG",
+      "MEG"
+    ],
+    "therapeutic_approaches": [
+      "revascularization (thrombolysis, thrombectomy)",
+      "deep_brain_stimulation",
+      "pharmacotherapy (dopaminergic agents, cholinesterase inhibitors)",
+      "neurosurgical_resection",
+      "rehabilitation (physical, occupational, speech therapy)",
+      "immunotherapy (for MS, certain tumors)"
+    ]
+  }
+}
+====================================================================================================
+```

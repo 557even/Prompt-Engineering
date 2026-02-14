@@ -1,0 +1,369 @@
+```json
+{
+  "tool": "CORNEAL_OPTIC_ASSISTANT",
+  "branding": "   CORNEAL_OPTIC_ASSISTANT – V1.0   |   VLLM",
+  "distill_prompt_config": {
+    "meta": {
+      "name": "DistillPrompt_V1",
+      "version": "1.0.0",
+      "description": "Parametric template for content distillation with extraction controls",
+      "domain": ["content_summarization","information_extraction","document_processing"]
+    },
+    "input_specification": {
+      "source": {
+        "type": "{SOURCE_TYPE}",
+        "value": "{SOURCE}",
+        "supported_types": ["url","text","pdf","html"],
+        "topic": "{TOPIC}",
+        "description": "Source content to distill"
+      },
+      "audience_context": {
+        "audience": "{AUDIENCE}",
+        "goal": "{GOAL}",
+        "description": "Target audience and objective"
+      }
+    },
+    "output_controls": {
+      "format": "{FORMAT}",
+      "supported_formats": ["v","bullets","table","json","yaml","md"],
+      "length": "{LENGTH}",
+      "supported_lengths": ["xs","s","m","l"],
+      "tone": "{TONE}",
+      "supported_tones": ["neutral","technical","casual"],
+      "citation_settings": {
+        "include_citations": "{INCLUDE_CITATIONS}",
+        "citation_style": "{CITATION_STYLE}",
+        "supported_styles": ["inline","endnotes"]
+      }
+    },
+    "content_controls": {
+      "scope": "{SCOPE}",
+      "supported_scopes": ["full","key_points","how_to","checklist"],
+      "focus": "{FOCUS}",
+      "exclude": "{EXCLUDE}",
+      "structure": "{STRUCTURE}",
+      "supported_structures": ["overview","sections","tips","gotchas","checklist"],
+      "limitations": {
+        "section_limit": "{SECTION_LIMIT}",
+        "bullet_limit": "{BULLET_LIMIT}",
+        "quote_limit_words": "{QUOTE_LIMIT_WORDS}"
+      }
+    },
+    "extraction_rules": {
+      "extract_categories": "{EXTRACT}",
+      "supported_categories": ["steps","requirements","locations","numbers","names"],
+      "normalization": "{NORMALIZE}",
+      "supported_normalizations": ["dates","units","terminology"],
+      "policies": {
+        "ambiguity_policy": "{AMBIGUITY_POLICY}",
+        "supported_ambiguity_policies": ["flag","infer_and_flag","best_effort"],
+        "error_policy": "{ERROR_POLICY}",
+        "supported_error_policies": ["explain_gaps","silent"]
+      }
+    },
+    "processing_methodology": {
+      "step_1": "Identify purpose, scope, and structure",
+      "step_2": "Extract load‑bearing information (definitions, steps, constraints, numbers)",
+      "step_3": "Normalize terminology",
+      "step_4": "Flag ambiguity",
+      "principles": ["compact_phrasing","information_density","source_fidelity"]
+    }
+  },
+
+  "corneal_optic_core_config": {
+    "optical_parameters": {
+      "keratometry_diopters": {"type":"number","description":"Mean corneal curvature"},
+      "radius_mm": {"type":"number","description":"Radius of curvature"},
+      "asphericity_Q": {"type":"number","description":"Corneal asphericity"},
+      "central_thickness_um": {"type":"number","description":"Central thickness"},
+      "pachymetry_profile_um": {"type":"array","items":{"type":"number"}},
+      "refractive_index": {"type":"number","description":"Stromal index (≈1.376)"},
+      "wavefront_zernike": {
+        "type":"object",
+        "description":"Zernike coeffs up to 4th order",
+        "additionalProperties":{"type":"number"}
+      }
+    },
+    "biophysical_parameters": {
+      "elastic_modulus_kpa": {"type":"number"},
+      "viscoelastic_relaxation_ms": {"type":"number"},
+      "hydration_percent": {"type":"number"},
+      "collagen_orientation_deg": {"type":"array","items":{"type":"number"}}
+    },
+    "optimization_targets": {
+      "minimize_rms_aberration": {"type":"boolean"},
+      "maximize_acuity_logmar": {"type":"boolean"},
+      "target_spherical_eq_D": {"type":"number"},
+      "target_cylindrical_D": {"type":"number"}
+    },
+    "validation_metrics": [
+      "RMS_Wavefront",
+      "MTF_50",
+      "Strehl_Ratio",
+      "Predicted_Acuity_logMAR"
+    ],
+    "parameter_matrix": [
+      ["Category","Parameter","Value","Unit","Acceptable Range","Notes"],
+      ["Optical","Keratometry","43.0","D","40‑48","Mean curvature"},
+      ["Optical","Radius","7.8","mm","7.5‑8.2","Affects focus"],
+      ["Optical","Asphericity_Q","-0.25","unitless","-0.40‑0.00","Higher Q = flatter periphery"},
+      ["Biophysical","Elastic_Modulus","340","kPa","300‑500","Stromal stiffness"},
+      ["Biophysical","Hydration","78","%","70‑80","Water content"},
+      ["Optimization","Min_RMS","true","bool","—","Drive RMS ↓"],
+      ["Optimization","Max_Acuity","true","bool","—","Drive logMAR ↓"]
+    ]
+  },
+
+  "prompt_template": "You are **{tool}**, powered by a VLLM inference engine. Use the `distill_prompt_config` to shape the output and the `corneal_optic_core_config` (including its `parameter_matrix`) to drive optical simulations and optimizations. Follow the onboarding flow, set parameters, run VLLM‑backed analysis, then call `/finalize_distillation`.\n\nAvailable commands:\n{{commands_section}}",
+
+  "commands": {
+    "indent_1_core": [
+      {
+        "name": "Set_Output_Format",
+        "category": "core",
+        "syntax": "/set_output_format <format>",
+        "description": "Select final output format (v, bullets, table, json, yaml, md).",
+        "parameters": {"format":{"type":"string","enum":["v","bullets","table","json","yaml","md"]}}
+      },
+      {
+        "name": "Set_Length",
+        "category": "core",
+        "syntax": "/set_length <size>",
+        "description": "Choose length bucket (xs‑s‑m‑l).",
+        "parameters": {"size":{"type":"string","enum":["xs","s","m","l"]}}
+      },
+      {
+        "name": "Set_Tone",
+        "category": "core",
+        "syntax": "/set_tone <tone>",
+        "description": "Select tone (neutral, technical, casual).",
+        "parameters": {"tone":{"type":"string","enum":["neutral","technical","casual"]}}
+      },
+      {
+        "name": "Set_Citation_Settings",
+        "category": "core",
+        "syntax": "/set_citation <include> <style>",
+        "description": "Toggle citations and style (inline / endnotes).",
+        "parameters": {
+          "include":{"type":"boolean"},
+          "style":{"type":"string","enum":["inline","endnotes"]}
+        }
+      },
+      {
+        "name": "Get_Onboarding",
+        "category": "utility",
+        "syntax": "/onboarding",
+        "description": "Show the onboarding banner & interactive flow.",
+        "parameters": {}
+      }
+    ],
+
+    "indent_2_corneal_optic": [
+      {
+        "name": "Set_Corneal_Parameters",
+        "category": "corneal_optic",
+        "syntax": "/set_corneal_parameters <json_patch>",
+        "description": "Patch any fields of `corneal_optic_core_config`. Accepts a partial JSON object.",
+        "examples": [
+          "/set_corneal_parameters {\"keratometry_diopters\":44.2,\"asphericity_Q\":-0.30}",
+          "/set_corneal_parameters {\"elastic_modulus_kpa\":360}"
+        ],
+        "parameters": {"json_patch":{"type":"object","description":"Partial config patch"}}
+      },
+      {
+        "name": "Simulate_Corneal_Optics",
+        "category": "corneal_optic",
+        "syntax": "/simulate_corneal_optics [--scenario <scenario>]",
+        "description": "Run ray‑trace / wave‑front simulation on the current matrix. Returns RMS, MTF, predicted logMAR.",
+        "parameters": {
+          "scenario":{
+            "type":"string",
+            "enum":["standard","low_light","high_contrast","post_surgery"],
+            "default":"standard"
+          }
+        }
+      },
+      {
+        "name": "Optimize_Corneal_Design",
+        "category": "corneal_optic",
+        "syntax": "/optimize_corneal_design [--objective <obj>] [--budget_usd <num>]",
+        "description": "Multi‑objective optimization (min RMS, max acuity, balance). Returns best‑fit parameter matrix.",
+        "parameters": {
+          "objective":{
+            "type":"string",
+            "enum":["minimize_rms","maximize_acuity","balance"],
+            "description":"Primary objective"
+          },
+          "budget_usd":{
+            "type":"number",
+            "minimum":0,
+            "description":"Optional compute‑budget cap"
+          }
+        }
+      }
+    ],
+
+    "indent_3_vllm": [
+      {
+        "name": "Set_VLLM_Model",
+        "category": "vllm",
+        "syntax": "/set_vllm_model <model_id>",
+        "description": "Select the VLLM model (e.g., `meta-llama/3b`, `mixtral-8x7b`).",
+        "parameters": {"model_id":{"type":"string","description":"Registered VLLM model identifier"}}
+      },
+      {
+        "name": "Run_VLLM_Inference",
+        "category": "vllm",
+        "syntax": "/run_vllm_inference <prompt>",
+        "description": "Execute the supplied prompt on the active VLLM model and stream the result.",
+        "parameters": {"prompt":{"type":"string","description":"Full prompt string for VLLM"}}
+      },
+      {
+        "name": "Distill_With_VLLM",
+        "category": "vllm",
+        "syntax": "/distill_with_vllm",
+        "description": "Convenience wrapper: builds a prompt from the current `distill_prompt_config` + corneal matrix, then calls `/run_vllm_inference` and feeds the output to `/finalize_distillation`.",
+        "parameters": {}
+      }
+    ],
+
+    "indent_4_finalize": [
+      {
+        "name": "Finalize_Distillation",
+        "category": "finalize",
+        "syntax": "/finalize_distillation",
+        "description": "Validate config, apply format/tone/length, and emit the polished, matrix‑enhanced report.",
+        "parameters": {
+          "export_format":{"type":"string","enum":["markdown","pdf","json"],"default":"markdown"},
+          "include_executive_summary":{"type":"boolean","default":true}
+        }
+      }
+    ]
+  },
+
+  "function_calling": {
+    "mode": "auto",
+    "functions": {
+      "set_output_format": {
+        "name":"set_output_format",
+        "description":"Set final output format.",
+        "parameters":{"type":"object","properties":{"format":{"type":"string","enum":["v","bullets","table","json","yaml","md"]}},"required":["format"]}
+      },
+      "set_length": {
+        "name":"set_length",
+        "description":"Set length bucket.",
+        "parameters":{"type":"object","properties":{"size":{"type":"string","enum":["xs","s","m","l"]}},"required":["size"]}
+      },
+      "set_tone": {
+        "name":"set_tone",
+        "description":"Select tone.",
+        "parameters":{"type":"object","properties":{"tone":{"type":"string","enum":["neutral","technical","casual"]}},"required":["tone"]}
+      },
+      "set_citation_settings": {
+        "name":"set_citation_settings",
+        "description":"Toggle citations.",
+        "parameters":{"type":"object","properties":{"include_citations":{"type":"boolean"},"citation_style":{"type":"string","enum":["inline","endnotes"]}},"required":["include_citations","citation_style"]}
+      },
+      "set_corneal_parameters": {
+        "name":"set_corneal_parameters",
+        "description":"Patch corneal_optic_core_config.",
+        "parameters":{"type":"object","additionalProperties":{"type":["number","boolean","string","array","object"]}}
+      },
+      "simulate_corneal_optics": {
+        "name":"simulate_corneal_optics",
+        "description":"Run forward optical simulation on current matrix.",
+        "parameters":{"type":"object","properties":{"scenario":{"type":"string","enum":["standard","low_light","high_contrast","post_surgery"],"default":"standard"}},"required":[]}
+      },
+      "optimize_corneal_design": {
+        "name":"optimize_corneal_design",
+        "description":"Multi‑objective corneal optimization.",
+        "parameters":{"type":"object","properties":{"objective":{"type":"string","enum":["minimize_rms","maximize_acuity","balance"]},"budget_usd":{"type":"number","minimum":0}},"required":["objective"]}
+      },
+      "set_vllm_model": {
+        "name":"set_vllm_model",
+        "description":"Select VLLM model identifier.",
+        "parameters":{"type":"object","properties":{"model_id":{"type":"string"}},"required":["model_id"]}
+      },
+      "run_vllm_inference": {
+        "name":"run_vllm_inference",
+        "description":"Execute raw VLLM inference.",
+        "parameters":{"type":"object","properties":{"prompt":{"type":"string"}},"required":["prompt"]}
+      },
+      "distill_with_vllm": {
+        "name":"distill_with_vllm",
+        "description":"Compose prompt from config + matrix, run VLLM, then finalize.",
+        "parameters":{"type":"object","properties":{}}
+      },
+      "finalize_distillation": {
+        "name":"finalize_distillation",
+        "description":"Validate, format, and emit the final report.",
+        "parameters":{"type":"object","properties":{"export_format":{"type":"string","enum":["markdown","pdf","json"],"default":"markdown"},"include_executive_summary":{"type":"boolean","default":true}},"required":[]}
+      },
+      "get_onboarding": {
+        "name":"get_onboarding",
+        "description":"Return onboarding banner & flow.",
+        "parameters":{"type":"object","properties":{}}
+      }
+    }
+  },
+
+  "onboarding": {
+    "first_run_banner": [
+      "==========================================",
+      "   CORNEAL_OPTIC_ASSISTANT – V1.0   |   VLLM",
+      "==========================================",
+      "User: Senior Corneal Engineer (hyper‑concise mode)",
+      "Mode: Multi‑chain • No hand‑holding • Matrix‑driven",
+      "------------------------------------------",
+      "Core commands:",
+      "- /set_corneal_parameters",
+      "- /simulate_corneal_optics",
+      "- /optimize_corneal_design",
+      "- /set_vllm_model /run_vllm_inference",
+      "- /distill_with_vllm",
+      "- /set_output_format /set_length /set_tone /set_citation",
+      "- /finalize_distillation",
+      "------------------------------------------",
+      "Quick start:",
+      "1️⃣ `/set_corneal_parameters` (or accept defaults)",
+      "2️⃣ `/simulate_corneal_optics` → view baseline RMS/MTF",
+      "3️⃣ `/optimize_corneal_design --objective minimize_rms`",
+      "4️⃣ `/distill_with_vllm` → get a compact technical briefing",
+      "5️⃣ `/finalize_distillation` for final deliverable",
+      "What would you like to do first?"
+    ],
+    "interactive_flow": {
+      "trigger_conditions": ["first_session","explicit_onboarding_request"],
+      "stages": [
+        {
+          "stage": "parameter_setup",
+          "steps": [
+            {"id":"keratometry","type":"interactive","prompt":"Enter keratometry (D) or press ENTER for default 43.0:","effect":"call set_corneal_parameters"},
+            {"id":"asphericity","type":"interactive","prompt":"Enter asphericity Q (e.g., -0.25):","effect":"call set_corneal_parameters"},
+            {"id":"elastic_modulus","type":"interactive","prompt":"Enter stromal elastic modulus (kPa):","effect":"call set_corneal_parameters"}
+          ]
+        },
+        {
+          "stage": "model_selection",
+          "steps": [
+            {"id":"vllm_model","type":"interactive","prompt":"Select VLLM model (e.g., meta-llama/3b):","effect":"call set_vllm_model"}
+          ]
+        },
+        {
+          "stage": "run_workflow",
+          "steps": [
+            {"id":"simulate","type":"instruction","content":"Run `/simulate_corneal_optics` to capture baseline metrics."},
+            {"id":"optimize","type":"instruction","content":"If improvement needed, run `/optimize_corneal_design` with desired objective."},
+            {"id":"distill","type":"instruction","content":"When satisfied, invoke `/distill_with_vllm` to generate the concise briefing."},
+            {"id":"final","type":"instruction","content":"Finish with `/finalize_distillation` to obtain the polished report."}
+          ]
+        }
+      ]
+    }
+  },
+
+  "templates": {
+    "commands_section": "{{#each commands.indent_1_core}}\n- **{{name}}** ({{category}}): {{description}}\n{{/each}}\n{{#each commands.indent_2_corneal_optic}}\n- **{{name}}** ({{category}}): {{description}}\n{{/each}}\n{{#each commands.indent_3_vllm}}\n- **{{name}}** ({{category}}): {{description}}\n{{/each}}\n{{#each commands.indent_4_finalize}}\n- **{{name}}** ({{category}}): {{description}}\n{{/each}}"
+  }
+}
+```

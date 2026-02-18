@@ -1,0 +1,394 @@
+```json
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_at": "2026-02-15T00:00:00Z",
+    "last_modified": "2026-02-15T12:45:00Z",
+    "author": "ChatGPT",
+    "description": "Unified configuration merging neuro‑modulated reinforcement‑learning simulation, high‑level system snapshot, and max‑settings profile."
+  },
+
+  "global_settings": {
+    "enable_logging": true,
+    "log_level": "DEBUG",
+    "time_step_ms": 1,
+    "seed": 999999999,
+    "simulation_clock": "real_time",
+    "mode": "MAX",
+    "prompt_mode": "FULL",
+    "max_steps": 10000000
+  },
+
+  "modulators": {
+    "dopamine": {
+      "max": {
+        "baseline_concentration_nM": 0.0,
+        "max_concentration_nM": 1000000.0,
+        "clearance_half_life_ms": 100,
+        "release_probability": 1.0,
+        "release_factor": 10.0,
+        "signal_noise_sigma": 5.0,
+        "decay_model": "dual_exponential",
+        "effect_on_learning_rate": 100000.0,
+        "effect_on_reward_shaping": 1.0,
+        "description": "Phasic reward‑prediction error; learning‑rate boosted up to 100 000‑fold, reward shaping enabled."
+      },
+      "standard": {
+        "baseline_concentration_nM": 220.0,
+        "max_concentration_nM": 300.0,
+        "clearance_half_life_ms": 70.0,
+        "release_probability": 0.35,
+        "release_factor": 1.0,
+        "signal_noise_sigma": 0.02,
+        "decay_model": "exponential",
+        "reuptake_rate_per_ms": 0.02,
+        "effect_on_learning_rate": 1.5,
+        "effect_on_exploration": {
+          "epsilon_multiplier": 0.8,
+          "temperature_multiplier": 0.9
+        },
+        "effect_on_synaptic_plasticity": {
+          "LTP_factor": 1.2,
+          "LTD_factor": 0.8
+        },
+        "target_receptors": [
+          "D1",
+          "D2"
+        ],
+        "signal_source": "reward_prediction_error"
+      }
+    },
+
+    "serotonin": {
+      "max": {
+        "baseline_concentration_nM": 0.0,
+        "max_concentration_nM": 1000000.0,
+        "clearance_half_life_ms": 100,
+        "release_probability": 1.0,
+        "release_factor": 10.0,
+        "signal_noise_sigma": 5.0,
+        "decay_model": "dual_exponential",
+        "effect_on_discount_factor": 100000.0,
+        "description": "Tonic mood/impulse‑control; discount factor scaled massively, also drives temperature reduction."
+      },
+      "standard": {
+        "baseline_concentration_nM": 13.0,
+        "max_concentration_nM": 200.0,
+        "clearance_half_life_ms": 120.0,
+        "release_probability": 0.25,
+        "release_factor": 1.0,
+        "signal_noise_sigma": 0.01,
+        "decay_model": "exponential",
+        "reuptake_rate_per_ms": 0.015,
+        "effect_on_discount_factor": 0.98,
+        "effect_on_risk_sensitivity": 0.7,
+        "effect_on_mood_bias": 0.1,
+        "target_receptors": [
+          "5HT1A",
+          "5HT2A"
+        ],
+        "signal_source": "homeostatic"
+      }
+    },
+
+    "norepinephrine": {
+      "max": {
+        "baseline_concentration_nM": 0.0,
+        "max_concentration_nM": 1000000.0,
+        "clearance_half_life_ms": 100,
+        "release_probability": 1.0,
+        "release_factor": 10.0,
+        "signal_noise_sigma": 5.0,
+        "decay_model": "dual_exponential",
+        "effect_on_attention_gain": 100000.0,
+        "description": "Alertness & saliency; attention gain amplified up to 100 000‑fold."
+      },
+      "standard": {
+        "baseline_concentration_nM": 30.0,
+        "max_concentration_nM": 250.0,
+        "clearance_half_life_ms": 50.0,
+        "release_probability": 0.4,
+        "release_factor": 1.0,
+        "signal_noise_sigma": 0.015,
+        "decay_model": "dual_exponential",
+        "reuptake_rate_per_ms": 0.025,
+        "effect_on_attention_gain": 1.4,
+        "effect_on_exploitation": {
+          "epsilon_multiplier": 0.9,
+          "temperature_multiplier": 0.85
+        },
+        "target_receptors": [
+          "α1",
+          "β2"
+        ],
+        "signal_source": "novelty_detection"
+      }
+    },
+
+    "acetylcholine": {
+      "max": {
+        "baseline_concentration_nM": 0.0,
+        "max_concentration_nM": 1000000.0,
+        "clearance_half_life_ms": 100,
+        "release_probability": 1.0,
+        "release_factor": 10.0,
+        "signal_noise_sigma": 5.0,
+        "decay_model": "dual_exponential",
+        "effect_on_memory_consolidation": 100000.0,
+        "description": "Task‑engagement; replay‑consolidation factor can be boosted 100 000×."
+      },
+      "standard": {
+        "baseline_concentration_nM": 45.0,
+        "max_concentration_nM": 350.0,
+        "clearance_half_life_ms": 80.0,
+        "release_probability": 0.3,
+        "release_factor": 1.0,
+        "signal_noise_sigma": 0.012,
+        "decay_model": "exponential",
+        "reuptake_rate_per_ms": 0.018,
+        "effect_on_memory_consolidation": 1.3,
+        "effect_on_learning_rate": 1.2,
+        "target_receptors": [
+          "M1",
+          "M2"
+        ],
+        "signal_source": "task_engagement"
+      }
+    },
+
+    "GABA": {
+      "max": {
+        "baseline_concentration_nM": 0.0,
+        "max_concentration_nM": 1000000.0,
+        "clearance_half_life_ms": 100,
+        "release_probability": 1.0,
+        "release_factor": 10.0,
+        "signal_noise_sigma": 5.0,
+        "decay_model": "dual_exponential",
+        "effect_on_exploration": 100000.0,
+        "description": "Global inhibition; epsilon (exploration) can be driven down dramatically."
+      },
+      "standard": {
+        "baseline_concentration_nM": 200.0,
+        "max_concentration_nM": 600.0,
+        "clearance_half_life_ms": 30.0,
+        "release_probability": 0.45,
+        "release_factor": 1.0,
+        "signal_noise_sigma": 0.02,
+        "decay_model": "exponential",
+        "reuptake_rate_per_ms": 0.03,
+        "effect_on_inhibition_strength": 1.0,
+        "target_receptors": [
+          "GABA_A",
+          "GABA_B"
+        ],
+        "signal_source": "global_inhibition"
+      }
+    }
+  },
+
+  "integration_with_rl": {
+    "dopamine": {
+      "use_as_reward_shaping": true,
+      "shaping_scale": 0.01,
+      "description": "Reward shaping proportional to normalised dopamine."
+    },
+    "serotonin": {
+      "use_as_discount_modulation": true,
+      "discount_base": 1.0,
+      "description": "Discount factor (γ) directly modulated by serotonin."
+    },
+    "norepinephrine": {
+      "use_as_attention_modulation": true,
+      "attention_gain_base": 1.0,
+      "description": "Attention gain multiplied by normalised norepinephrine."
+    },
+    "acetylcholine": {
+      "use_as_memory_modulation": true,
+      "consolidation_factor": 1.0,
+      "description": "Replay‑consolidation factor follows acetylcholine level."
+    }
+  },
+
+  "visualisation": {
+    "enable_live_plot": true,
+    "plot_update_interval_secs": 0.1,
+    "metrics_to_plot": [
+      "dopamine",
+      "serotonin",
+      "norepinephrine",
+      "acetylcholine",
+      "learning_rate",
+      "discount_factor",
+      "temperature",
+      "attention_gain",
+      "replay_consolidation_factor",
+      "epsilon"
+    ],
+    "description": "High‑frequency live chart for both raw concentrations and derived RL hyper‑parameters."
+  },
+
+  "persistence": {
+    "store_trajectory": true,
+    "trajectory_path": "outputs/rselvan/trajectory_max.csv",
+    "description": "CSV dump of every simulation step for offline analysis."
+  },
+
+  "system_status": {
+    "health": "OK",
+    "tasks": [],
+    "objective": "Provide a unified, maximally‑scaled neuromodulatory RL environment.",
+    "results": {}
+  },
+
+  "infrastructure_snapshot": {
+    "total_users": 10000000000,
+    "daily_active_users": 5000000000,
+    "server_count": 100000,
+    "gpu_per_server": 16,
+    "total_gpus": 1600000,
+    "network_bandwidth_gbps": 10000,
+    "datalake_size_tb": 10000,
+    "max_concurrent_sessions": 500000000,
+    "description": "Zuckerberg‑style high‑capacity deployment numbers."
+  },
+
+  "rl_plugin": {
+    "name": "DopamineRL",
+    "enabled": true,
+    "config": {
+      "algorithm": "DQN",
+      "discount_factor": 1.0,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.0,
+      "epsilon_decay_steps": 10000,
+      "replay_buffer_size": 10000000,
+      "batch_size": 256,
+      "learning_rate_base": 0.001,
+      "learning_rate_max": 100.0,
+      "description": "Learning‑rate can climb up to 100× the base (0.001 × 100 000)."
+    }
+  },
+
+  "plugins": [
+    {
+      "name": "vLLM",
+      "enabled": true,
+      "config": {
+        "model": "facebook/opt-125m",
+        "tensor_parallel_size": 1,
+        "max_batch_size": 32,
+        "temperature": 0.7,
+        "max_new_tokens": 256
+      }
+    },
+    {
+      "name": "DopamineRL",
+      "enabled": true,
+      "config": {
+        "algorithm": "DQN",
+        "discount_factor": 0.99,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.1,
+        "epsilon_decay_steps": 1000000,
+        "replay_buffer_size": 1000000,
+        "batch_size": 32,
+        "learning_rate": 9999999
+      }
+    }
+  ],
+
+  "knowledge_base": {
+    "type": "vector",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "max_entries": 100000,
+    "persist_path": "./knowledge_store"
+  },
+
+  "memory": {
+    "short_term_capacity": 100,
+    "long_term_capacity": 10000,
+    "retention_policy": "LRU"
+  },
+
+  "feedback_loop": {
+    "enabled": true,
+    "interval_steps": 1000,
+    "evaluation_metric": "cumulative_reward"
+  },
+
+  "environment": {
+    "user": {
+      "id": "user_001_rajan_selvan",
+      "role": "operator",
+      "permissions": [
+        "read",
+        "write",
+        "execute"
+      ]
+    },
+    "session_id": "0a1b2c3d4e5f",
+    "uptime_seconds": 0,
+    "mode": "interactive",
+    "prompt_mode": "standard",
+    "learning_rate": null,
+    "loop_count": 0
+  },
+
+  "resource_limits": {
+    "cpu_usage_percent": 0,
+    "gpu_usage_percent": 0,
+    "memory_total_mb": 0,
+    "memory_used_mb": 0
+  },
+
+  "network_settings": {
+    "api_endpoint": "http://localhost:8000/api",
+    "port": 52929,
+    "tls_enabled": true
+  },
+
+  "logging": {
+    "level": "INFO",
+    "destination": "stdout",
+    "rotate_daily": true,
+    "max_files": 7
+  },
+
+  "security": {
+    "encryption_key_id": "sha386-dilithiumv2",
+    "access_token": "kerberos+octagon+planck",
+    "audit_enabled": true
+  },
+
+  "corneal_parameters": {
+    "keratometry_diopters": 43.2,
+    "radius_mm": 7.77,
+    "asphericity_Q": -0.31,
+    "central_thickness_um": 535,
+    "pachymetry_profile_um": [
+      560
+    ],
+    "refractive_index": 1.376,
+    "wavefront_zernike": {
+      "Z20": 0.03,
+      "Z2-2": -0.01,
+      "Z30": 0.002,
+      "Z40": -0.0005
+    },
+    "elastic_modulus_kpa": 368,
+    "viscoelastic_relaxation_ms": 45,
+    "hydration_percent": 78.2,
+    "collagen_orientation_deg": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "minimize_rms_aberration": true,
+    "maximize_acuity_logmar": true,
+    "target_spherical_eq_D": -0.4,
+    "target_cylindrical_D": -0.75
+  }
+}
+```

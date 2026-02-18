@@ -219,17 +219,18 @@ Objective:
   "Provide a complete, scalable folder tree for a GPT-6-ready LLM product platform (UI + gateway + router + tools + RAG + evals + training + infra)."
 Results:
   "End-to-end directory layout with key files/placeholders."
-
-rpt6/
+gpt7/
 ├─ README.md
 ├─ LICENSE
 ├─ CONTRIBUTING.md
 ├─ CODEOWNERS
 ├─ SECURITY.md
+├─ GOVERNANCE.md
 ├─ .gitignore
 ├─ .gitattributes
 ├─ .editorconfig
 ├─ .env.example
+├─ .tool-versions                      # asdf (optional)
 ├─ package.json
 ├─ pnpm-workspace.yaml
 ├─ turbo.json
@@ -242,6 +243,11 @@ rpt6/
 │  ├─ gateway.Dockerfile
 │  ├─ worker.Dockerfile
 │  ├─ web.Dockerfile
+│  ├─ router.Dockerfile
+│  ├─ tools.Dockerfile
+│  ├─ rag.Dockerfile
+│  ├─ inference.Dockerfile
+│  ├─ trainer.Dockerfile
 │  └─ dev.Dockerfile
 ├─ scripts/
 │  ├─ bootstrap.sh
@@ -251,7 +257,9 @@ rpt6/
 │  ├─ test.sh
 │  ├─ release.sh
 │  ├─ seed_demo_data.py
-│  └─ gen_openapi.sh
+│  ├─ gen_openapi.sh
+│  ├─ gen_clients.sh
+│  └─ migrate_configs.py
 ├─ docs/
 │  ├─ architecture.md
 │  ├─ api.md
@@ -260,32 +268,44 @@ rpt6/
 │  ├─ safety.md
 │  ├─ evals.md
 │  ├─ rag.md
+│  ├─ agents.md
+│  ├─ memory.md
+│  ├─ training.md
 │  ├─ data_governance.md
+│  ├─ model_registry.md
 │  ├─ runbooks/
 │  │  ├─ incident.md
 │  │  ├─ rollback.md
-│  │  └─ abuse_response.md
+│  │  ├─ abuse_response.md
+│  │  └─ key_rotation.md
 │  └─ adr/
 │     ├─ 0001-monorepo.md
-│     └─ 0002-streaming-sse.md
+│     ├─ 0002-streaming-sse.md
+│     ├─ 0003-router-policy.md
+│     ├─ 0004-memory-store.md
+│     └─ 0005-eval-gates.md
 ├─ .github/
 │  ├─ workflows/
 │  │  ├─ ci.yml
 │  │  ├─ cd.yml
 │  │  ├─ security.yml
-│  │  └─ eval-gate.yml
+│  │  ├─ eval-gate.yml
+│  │  ├─ redteam-gate.yml
+│  │  └─ sbom.yml
 │  ├─ dependabot.yml
 │  └─ ISSUE_TEMPLATE/
 │     ├─ bug.md
 │     └─ feature.md
 ├─ apps/
-│  ├─ web/
+│  ├─ web/                              # user-facing product (Next.js)
 │  │  ├─ package.json
 │  │  ├─ next.config.js
 │  │  ├─ app/
 │  │  │  ├─ layout.tsx
 │  │  │  ├─ page.tsx
 │  │  │  ├─ chat/page.tsx
+│  │  │  ├─ agents/page.tsx
+│  │  │  ├─ memory/page.tsx
 │  │  │  ├─ settings/page.tsx
 │  │  │  └─ api/health/route.ts
 │  │  ├─ components/
@@ -293,47 +313,66 @@ rpt6/
 │  │  ├─ public/
 │  │  └─ tests/
 │  │     └─ e2e/
-│  ├─ gateway/
+│  ├─ gateway/                          # FastAPI edge: auth, streaming, orchestration entry
 │  │  ├─ pyproject.toml
 │  │  ├─ README.md
-│  │  └─ src/
-│  │     └─ gateway/
-│  │        ├─ __init__.py
-│  │        ├─ main.py                  # FastAPI entry
-│  │        ├─ api/
-│  │        │  ├─ v1_chat.py
-│  │        │  ├─ v1_embeddings.py
-│  │        │  └─ health.py
-│  │        ├─ auth/
-│  │        │  ├─ api_keys.py
-│  │        │  └─ jwt.py
-│  │        ├─ middleware/
-│  │        │  ├─ request_id.py
-│  │        │  ├─ rate_limit.py
-│  │        │  ├─ cors.py
-│  │        │  └─ logging.py
-│  │        ├─ orchestration/
-│  │        │  ├─ planner.py
-│  │        │  ├─ tool_runner.py
-│  │        │  └─ streaming.py
-│  │        ├─ config/
-│  │        │  ├─ settings.py
-│  │        │  └─ feature_flags.py
-│  │        └─ telemetry/
-│  │           ├─ otel.py
-│  │           └─ metrics.py
-│  ├─ worker/
+│  │  └─ src/gateway/
+│  │     ├─ __init__.py
+│  │     ├─ main.py
+│  │     ├─ api/
+│  │     │  ├─ v1_chat.py
+│  │     │  ├─ v1_responses.py
+│  │     │  ├─ v1_embeddings.py
+│  │     │  ├─ v1_files.py
+│  │     │  ├─ v1_tools.py
+│  │     │  ├─ v1_memory.py
+│  │     │  └─ health.py
+│  │     ├─ auth/
+│  │     │  ├─ api_keys.py
+│  │     │  ├─ jwt.py
+│  │     │  └─ permissions.py
+│  │     ├─ middleware/
+│  │     │  ├─ request_id.py
+│  │     │  ├─ rate_limit.py
+│  │     │  ├─ cors.py
+│  │     │  ├─ logging.py
+│  │     │  └─ tenancy.py
+│  │     ├─ orchestration/
+│  │     │  ├─ planner.py
+│  │     │  ├─ agent_loop.py
+│  │     │  ├─ tool_runner.py
+│  │     │  ├─ streaming.py
+│  │     │  └─ context_builder.py
+│  │     ├─ config/
+│  │     │  ├─ settings.py
+│  │     │  ├─ feature_flags.py
+│  │     │  └─ limits.py
+│  │     └─ telemetry/
+│  │        ├─ otel.py
+│  │        ├─ metrics.py
+│  │        └─ audit.py
+│  ├─ worker/                           # queue consumer for async jobs
 │  │  ├─ pyproject.toml
 │  │  └─ src/worker/
-│  │     ├─ main.py                     # queue consumer
+│  │     ├─ main.py
+│  │     ├─ queues/
+│  │     │  ├─ broker.py
+│  │     │  └─ routing.py
 │  │     └─ jobs/
 │  │        ├─ embeddings_job.py
 │  │        ├─ eval_job.py
-│  │        └─ ingest_job.py
-│  └─ admin/
+│  │        ├─ ingest_job.py
+│  │        ├─ finetune_job.py
+│  │        └─ redteam_job.py
+│  └─ admin/                            # internal dashboard (optional)
 │     ├─ package.json
 │     └─ src/
-│        └─ index.tsx                   # internal dashboard (optional)
+│        ├─ index.tsx
+│        └─ pages/
+│           ├─ tenants.tsx
+│           ├─ costs.tsx
+│           ├─ evals.tsx
+│           └─ incidents.tsx
 ├─ packages/
 │  ├─ sdk-ts/
 │  │  ├─ package.json
@@ -341,23 +380,33 @@ rpt6/
 │  │  │  ├─ index.ts
 │  │  │  ├─ client.ts
 │  │  │  ├─ streaming.ts
-│  │  │  └─ types.ts
+│  │  │  ├─ types.ts
+│  │  │  └─ errors.ts
 │  │  └─ tests/
 │  ├─ sdk-py/
 │  │  ├─ pyproject.toml
-│  │  └─ src/gpt6_sdk/
+│  │  └─ src/gpt7_sdk/
 │  │     ├─ __init__.py
 │  │     ├─ client.py
 │  │     ├─ streaming.py
-│  │     └─ types.py
+│  │     ├─ types.py
+│  │     └─ errors.py
+│  ├─ ui-kit/
+│  │  ├─ package.json
+│  │  └─ src/
+│  │     ├─ components/
+│  │     └─ theme/
 │  ├─ promptkit/
 │  │  ├─ package.json
 │  │  └─ src/
 │  │     ├─ templates/
 │  │     │  ├─ system_default.md
 │  │     │  ├─ system_tools.md
-│  │     │  └─ safety_preamble.md
+│  │     │  ├─ system_agents.md
+│  │     │  ├─ safety_preamble.md
+│  │     │  └─ refusal_patterns.md
 │  │     ├─ render.ts
+│  │     ├─ compression.ts             # prompt/context compression rules
 │  │     └─ redaction.ts
 │  ├─ policies/
 │  │  ├─ package.json
@@ -365,39 +414,62 @@ rpt6/
 │  │     ├─ routing/
 │  │     │  ├─ policy.ts
 │  │     │  ├─ cost_latency.ts
-│  │     │  └─ canary.ts
+│  │     │  ├─ canary.ts
+│  │     │  └─ qos_tiers.ts
 │  │     ├─ safety/
 │  │     │  ├─ input_filter.ts
 │  │     │  ├─ output_filter.ts
-│  │     │  └─ allowlists.ts
+│  │     │  ├─ allowlists.ts
+│  │     │  └─ jailbreak_rules.ts
 │  │     └─ tenancy/
 │  │        ├─ quotas.ts
-│  │        └─ entitlements.ts
+│  │        ├─ entitlements.ts
+│  │        └─ billing_tags.ts
 │  ├─ evals/
 │  │  ├─ pyproject.toml
 │  │  ├─ src/evals/
 │  │  │  ├─ harness.py
 │  │  │  ├─ metrics.py
+│  │  │  ├─ judges/
+│  │  │  │  ├─ llm_judge.py
+│  │  │  │  ├─ heuristic.py
+│  │  │  │  └─ rubric.yaml
 │  │  │  ├─ suites/
 │  │  │  │  ├─ coding.yaml
 │  │  │  │  ├─ reasoning.yaml
 │  │  │  │  ├─ safety.yaml
-│  │  │  │  └─ tooluse.yaml
+│  │  │  │  ├─ tooluse.yaml
+│  │  │  │  ├─ rag.yaml
+│  │  │  │  └─ latency_cost.yaml
 │  │  │  └─ reporters/
 │  │  │     ├─ jsonl.py
-│  │  │     └─ dashboard.py
+│  │  │     ├─ dashboard.py
+│  │  │     └─ junit.py
 │  │  └─ datasets/
 │  │     ├─ README.md
 │  │     └─ manifests/
 │  │        ├─ public.yaml
-│  │        └─ internal.yaml
-│  └─ ui-kit/
-│     ├─ package.json
+│  │        ├─ internal.yaml
+│  │        └─ redteam.yaml
+│  ├─ redteam/
+│  │  ├─ pyproject.toml
+│  │  └─ src/redteam/
+│  │     ├─ campaigns/
+│  │     │  ├─ jailbreak.yaml
+│  │     │  ├─ privacy.yaml
+│  │     │  ├─ bio.yaml
+│  │     │  └─ policy_regression.yaml
+│  │     ├─ generators/
+│  │     ├─ analyzers/
+│  │     └─ reports/
+│  └─ shared/
+│     ├─ package.json                  # optional TS shared lib
 │     └─ src/
-│        ├─ components/
-│        └─ theme/
+│        ├─ ids.ts
+│        ├─ time.ts
+│        └─ schemas/
 ├─ services/
-│  ├─ router/
+│  ├─ router/                          # provider selection + fallbacks + caching
 │  │  ├─ pyproject.toml
 │  │  └─ src/router/
 │  │     ├─ __init__.py
@@ -406,50 +478,98 @@ rpt6/
 │  │     │  ├─ local_stub.py
 │  │     │  ├─ openai.py
 │  │     │  ├─ anthropic.py
-│  │     │  └─ vllm.py
+│  │     │  ├─ vllm.py
+│  │     │  └─ custom_inference.py
 │  │     ├─ routing/
 │  │     │  ├─ decision.py
 │  │     │  ├─ fallback.py
-│  │     │  └─ canary.py
+│  │     │  ├─ canary.py
+│  │     │  ├─ budgets.py
+│  │     │  └─ reliability.py
 │  │     └─ cache/
 │  │        ├─ semantic.py
-│  │        └─ response.py
-│  ├─ tools/
+│  │        ├─ response.py
+│  │        └─ kv.py
+│  ├─ tools/                           # tool registry + sandbox + policy enforcement
 │  │  ├─ pyproject.toml
 │  │  └─ src/tools/
 │  │     ├─ registry.py
+│  │     ├─ invocation.py
 │  │     ├─ schemas/
 │  │     │  ├─ http.json
 │  │     │  ├─ calculator.json
-│  │     │  └─ rag.json
+│  │     │  ├─ rag.json
+│  │     │  └─ filesystem.json
 │  │     ├─ sandboxes/
 │  │     │  ├─ http_client.py
 │  │     │  ├─ filesystem.py
-│  │     │  └─ subprocess.py
+│  │     │  ├─ subprocess.py
+│  │     │  └─ egress_control.py
 │  │     └─ policies/
 │  │        ├─ allowlist.py
-│  │        └─ timeouts.py
-│  ├─ rag/
+│  │        ├─ timeouts.py
+│  │        ├─ data_access.py
+│  │        └─ audit.py
+│  ├─ rag/                             # ingest + embed + index + retrieve + rerank
 │  │  ├─ pyproject.toml
 │  │  └─ src/rag/
 │  │     ├─ ingest/
 │  │     │  ├─ loaders.py
 │  │     │  ├─ chunking.py
-│  │     │  └─ dedupe.py
+│  │     │  ├─ dedupe.py
+│  │     │  └─ pii_scrub.py
 │  │     ├─ embed/
 │  │     │  ├─ embedder.py
 │  │     │  └─ providers.py
 │  │     ├─ index/
 │  │     │  ├─ vector_store.py
+│  │     │  ├─ doc_store.py
 │  │     │  └─ migrations/
-│  │     └─ retrieve/
-│  │        ├─ retriever.py
-│  │        └─ rerank.py
+│  │     ├─ retrieve/
+│  │     │  ├─ retriever.py
+│  │     │  ├─ rerank.py
+│  │     │  └─ fusion.py
+│  │     └─ eval/
+│  │        ├─ recall_precision.py
+│  │        └─ grounding.py
+│  ├─ agents/                          # durable agent runtime (state, plans, skills)
+│  │  ├─ pyproject.toml
+│  │  └─ src/agents/
+│  │     ├─ runtime.py
+│  │     ├─ state.py
+│  │     ├─ planner.py
+│  │     ├─ skills/
+│  │     │  ├─ browser.py
+│  │     │  ├─ coding.py
+│  │     │  ├─ data_analysis.py
+│  │     │  └─ retrieval.py
+│  │     └─ traces/
+│  ├─ memory/                          # short/long-term memory, summarization, policies
+│  │  ├─ pyproject.toml
+│  │  └─ src/memory/
+│  │     ├─ store.py                   # interface
+│  │     ├─ episodic.py
+│  │     ├─ semantic.py
+│  │     ├─ summarizer.py
+│  │     ├─ retention.py               # TTL + consent + scoping
+│  │     └─ encryption.py
+│  ├─ inference/                       # self-hosted inference server (optional)
+│  │  ├─ pyproject.toml
+│  │  └─ src/inference/
+│  │     ├─ server.py                  # OpenAI-compatible API shim (optional)
+│  │     ├─ batching.py
+│  │     ├─ kv_cache.py
+│  │     ├─ quantization.py
+│  │     └─ backends/
+│  │        ├─ vllm.py
+│  │        ├─ triton.py
+│  │        └─ torch_compile.py
 │  ├─ telemetry/
 │  │  ├─ pyproject.toml
 │  │  └─ src/telemetry/
 │  │     ├─ tracing.py
 │  │     ├─ logging.py
+│  │     ├─ metrics.py
 │  │     └─ dashboards/
 │  └─ safety/
 │     ├─ pyproject.toml
@@ -457,30 +577,82 @@ rpt6/
 │        ├─ classifiers/
 │        │  ├─ fast_text.py
 │        │  ├─ rules.py
-│        │  └─ llm_judge.py
+│        │  ├─ llm_judge.py
+│        │  └─ ensemble.py
 │        ├─ redaction/
 │        │  ├─ pii.py
-│        │  └─ secrets.py
-│        └─ enforcement/
-│           ├─ decision.py
-│           └─ audit.py
+│        │  ├─ secrets.py
+│        │  └─ watermark.py
+│        ├─ enforcement/
+│        │  ├─ decision.py
+│        │  ├─ audit.py
+│        │  └─ interventions.py
+│        └─ policies/
+│           ├─ policy.yaml
+│           └─ exceptions.yaml
+├─ platform/                           # “internal platform” glue: DB, queues, storage, config
+│  ├─ db/
+│  │  ├─ migrations/
+│  │  └─ schema.sql
+│  ├─ queue/
+│  │  ├─ README.md
+│  │  └─ topics.yaml
+│  ├─ storage/
+│  │  ├─ blobs.py
+│  │  └─ signed_urls.py
+│  └─ config/
+│     ├─ loader.py
+│     └─ validators.py
+├─ registry/                           # model + dataset + prompt registry (versioned)
+│  ├─ README.md
+│  ├─ models/
+│  │  ├─ gpt7-base/
+│  │  │  ├─ modelcard.md
+│  │  │  ├─ params.yaml
+│  │  │  └─ checksums.txt
+│  │  └─ manifests.yaml
+│  ├─ prompts/
+│  │  ├─ default/
+│  │  └─ manifests.yaml
+│  ├─ datasets/
+│  │  ├─ manifests.yaml
+│  │  └─ lineage.yaml
+│  └─ eval_baselines/
+│     └─ baselines.yaml
 ├─ training/
 │  ├─ README.md
 │  ├─ data/
 │  │  ├─ ingest/
 │  │  ├─ cleaners/
 │  │  ├─ filters/
+│  │  ├─ dedupe/
+│  │  ├─ mixtures/
 │  │  └─ manifests/
+│  ├─ tokenization/
+│  │  ├─ bpe_train.py
+│  │  ├─ merges.txt
+│  │  └─ vocab.json
 │  ├─ sft/
 │  │  ├─ configs/
 │  │  └─ run_sft.py
 │  ├─ preference/
 │  │  ├─ dpo/
-│  │  └─ rlhf/
+│  │  ├─ rlhf/
+│  │  └─ reward_model/
 │  ├─ safety_ft/
 │  │  └─ run_safety_ft.py
-│  └─ distill/
-│     └─ run_distill.py
+│  ├─ synthetic/
+│  │  ├─ generate.py
+│  │  └─ filters.py
+│  ├─ distill/
+│  │  └─ run_distill.py
+│  ├─ eval_in_train/
+│  │  ├─ gates.py
+│  │  └─ dashboards.py
+│  └─ distributed/
+│     ├─ deepspeed/
+│     ├─ fsdp/
+│     └─ slurm/
 ├─ infra/
 │  ├─ k8s/
 │  │  ├─ namespaces.yaml
@@ -488,8 +660,12 @@ rpt6/
 │  │  ├─ web-deployment.yaml
 │  │  ├─ worker-deployment.yaml
 │  │  ├─ router-deployment.yaml
+│  │  ├─ tools-deployment.yaml
+│  │  ├─ rag-deployment.yaml
+│  │  ├─ inference-deployment.yaml
 │  │  ├─ ingress.yaml
 │  │  ├─ hpa.yaml
+│  │  ├─ network_policies.yaml
 │  │  └─ secrets.example.yaml
 │  ├─ terraform/
 │  │  ├─ main.tf
@@ -499,31 +675,50 @@ rpt6/
 │  │     ├─ vpc/
 │  │     ├─ redis/
 │  │     ├─ postgres/
-│  │     └─ object_store/
+│  │     ├─ object_store/
+│  │     ├─ secrets_manager/
+│  │     └─ observability/
 │  └─ helm/
-│     └─ gpt6/
+│     └─ gpt7/
 │        ├─ Chart.yaml
 │        ├─ values.yaml
 │        └─ templates/
 ├─ configs/
 │  ├─ tenants/
 │  │  ├─ default.yaml
-│  │  └─ enterprise.yaml
+│  │  ├─ enterprise.yaml
+│  │  └─ internal.yaml
 │  ├─ models/
 │  │  ├─ providers.yaml
-│  │  └─ routing.yaml
-│  └─ safety/
-│     ├─ policies.yaml
-│     └─ allowlists.yaml
+│  │  ├─ routing.yaml
+│  │  ├─ pricing.yaml
+│  │  └─ limits.yaml
+│  ├─ safety/
+│  │  ├─ policies.yaml
+│  │  ├─ allowlists.yaml
+│  │  ├─ pii.yaml
+│  │  └─ redteam.yaml
+│  ├─ rag/
+│  │  ├─ chunking.yaml
+│  │  ├─ indexes.yaml
+│  │  └─ rerank.yaml
+│  └─ observability/
+│     ├─ otel.yaml
+│     └─ slo.yaml
 ├─ data/
 │  ├─ samples/
-│  └─ fixtures/
+│  ├─ fixtures/
+│  └─ golden/
+│     ├─ prompts/
+│     └─ outputs/
 ├─ logs/
 │  └─ .gitkeep
 └─ tests/
+   ├─ unit/
    ├─ integration/
    ├─ load/
    ├─ security/
-   └─ golden/
-      ├─ prompts/
-      └─ outputs/'''
+   ├─ golden/
+   └─ chaos/
+      ├─ fault_injection.md
+      └─ scenarios.yaml

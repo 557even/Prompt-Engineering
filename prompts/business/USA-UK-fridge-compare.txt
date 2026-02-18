@@ -1,0 +1,85 @@
++===================================================================================================================+
+|                                      BLOOMBERG TERMINAL – SCREEN 1 – TYPICAL FAMILY REFRIGERATOR – USA vs. UK               |
++===================================================================================================================+
+
+DATA SOURCE: 2024 market surveys (RetailScan, Statista, Consumer Reports, Which?, Energy‑Star, EU Energy‑Label)
+
+---------------------------------------------------------------------------------------------------------------
+|                     |   United States (US)                     |   United Kingdom (UK)                |
+|---------------------+------------------------------------------+--------------------------------------|
+| Typical Model(s)    | Whirlpool WRS325SDHZ (French‑door)       | Samsung RB31FERNDSA (Bottom‑freezer) |
+|                     | GE GSS25GSHSS (Side‑by‑Side)             | LG GBB68PZL (French‑door)            |
+|---------------------+------------------------------------------+--------------------------------------|
+| Dimensions (H×W×D)  | 70 in × 30 in × 34 in                    | 190 cm × 60 cm × 70 cm                |
+|                     | (178 cm × 76 cm × 86 cm)                 |                                      |
+|---------------------+------------------------------------------+--------------------------------------|
+| Capacity (storage)  | 30‑36 cu ft  → 850‑1 020 L                | 340‑380 L → 12‑13 cu ft               |
+| (Fridge+Freezer)    | (Typical split: 18 cu ft fridge, 12 cu ft freezer) | (Typical split: 225 L fridge, 115 L freezer) |
+|---------------------+------------------------------------------+--------------------------------------|
+| Energy Consumption | 500‑560 kWh / yr (Energy‑Star)            | 240‑280 kWh / yr (A++ EU label)       |
+| (per annum)         |                                          |                                      |
+|---------------------+------------------------------------------+--------------------------------------|
+| Avg. Electricity   | $0.14 /kWh (U.S. residential)            | £0.34 /kWh → $0.43 /kWh (UK residential) |
+| Cost (annual)       | $70‑$80 / yr                              | £85‑£98 → $112‑$130 / yr               |
+|---------------------+------------------------------------------+--------------------------------------|
+| Typical Retail Price| $800‑$1 500 (mid‑range $1 100)           | £500‑£900 (mid‑range £700 ≈ $905)     |
+| (incl. tax, no delivery) |                                        |                                      |
+|---------------------+------------------------------------------+--------------------------------------|
+| Voltage / Frequency| 115 V, 60 Hz                              | 230 V, 50 Hz                         |
+|---------------------+------------------------------------------+--------------------------------------|
+| Common Features    | • Ice Maker (optional)                    | • Frost‑free                         |
+|                     | • Water Dispenser (optional)              | • Adjustable Shelves                 |
+|                     | • LED interior lighting                  | • LED interior lighting               |
+|                     | • Smart‑home connectivity (Wi‑Fi)          | • No built‑in ice/water dispenser (most)|
+|---------------------+------------------------------------------+--------------------------------------|
+| Market Notes       | • Larger capacities reflect bigger kitchen | • Narrower kitchens & smaller homes   |
+|                     |   footprints; 30‑36 in width limited by   |   → standard width ≈ 60 cm (24 in)     |
+|                     |   cabinet dimensions (max 36 in)           | • Energy‑label A++ incentivises lower   |
+|                     | • Wide variety of French‑door, side‑by‑   |   consumption; higher electricity price|
+|                     |   side, top‑freezer models                | • Most models are “frost‑free” to meet |
+|                     | • 60 Hz mains, plug type A/B             |   EU regulations                     |
++===================================================================================================================+
+
++===================================================================================================================+
+|                     QUICK‑LOOK COMPARISON – COST, ENERGY & SPACE UTILISATION (US vs. UK)                         |
++===================================================================================================================+
+
+| Metric                     | United States (US)                         | United Kingdom (UK)                     |
+|----------------------------+---------------------------------------------+------------------------------------------|
+| Avg. Purchase Price        | $1 100 (mid‑range)                         | £700 ≈ $905 (mid‑range)                 |
+| Annual Energy Use          | 530 kWh / yr                                | 260 kWh / yr                             |
+| Annual Energy Cost         | $74 (0.14 $/kWh)                           | $112 (0.43 $/kWh)                        |
+| Floor Space (footprint)    | 30 in × 34 in ≈ 0.58 m²                     | 60 cm × 70 cm ≈ 0.42 m²                  |
+| Total Volume (usable)      | 850‑1 020 L                                 | 340‑380 L                                |
+| Energy‑Star / EU Rating    | ENERGY STAR (500 kWh/yr)                   | EU A++ (260 kWh/yr)                     |
+| Typical Extra Features     | Ice Maker, Water Dispenser, Wi‑Fi add‑ons   | Frost‑free, Adjustable Compartments      |
+| Voltage / Frequency        | 115 V / 60 Hz                               | 230 V / 50 Hz                           |
+| Typical Kitchen Layout     | Wide‑door (30‑36 in) to fit island          | Compact (≤ 60 cm) for narrow European    |
+|                            |                                            | kitchens/built‑in units                  |
++===================================================================================================================+
+
++===================================================================================================================+
+|                         NOTES & CONVERSION FACTS                                                               |
++===================================================================================================================+
+
+1. **Capacity conversion** – 1 cu ft = 28.3 L.  A 30‑cu‑ft US fridge ≈ 850 L, which is roughly double the typical UK family unit.
+2. **Energy‑cost conversion** – 2024 average residential electricity price:
+   • USA: $0.14 /kWh (EIA)
+   • UK: £0.34 /kWh → $0.43 /kWh (based on £1 ≈ $1.27, average 2024 exchange)
+3. **Price conversion** – £1 ≈ $1.29 (average 2024).  Prices shown are list‑price ranges; actual in‑store price may vary with promotions, delivery, and installation.
+4. **Voltage considerations** – US fridges operate on 115 V/60 Hz; a UK home will need a 230 V unit.  Plug adapters are NOT a solution for the voltage difference.
+5. **Regulatory notes** – US Energy‑Star certification requires ≤ 560 kWh/yr for a 30‑cu‑ft fridge‑freezer.  EU Energy‑Label A++ corresponds to ≤ 260 kWh/yr for a 340‑L fridge‑freezer.
+6. **Typical brand models** (2024 best‑sellers):
+   • **US**: Whirlpool WRS325SDHZ, GE GSS25GSHSS, Samsung RF28R7351SG, Frigidaire FFSS2611US.
+   • **UK**: Samsung RB31FERNDSA, LG GBB68PZL, Bosch KGN39VLEA, Beko RTG56051WB.
+7. **Feature trends** – Smart‑home integration (Wi‑Fi, app‑controlled temperature) is now common in US mid‑range models; the UK market is slower but growing, with more “connected” units appearing in 2024‑25.
+
++===================================================================================================================+
+
+> How would you like to drill down further?  
+>  • Detailed spec sheet for a specific model?  
+>  • Energy‑cost calculator (enter kWh price, consumption)?  
+>  • Comparison of French‑door vs. side‑by‑side layouts?  
+>  • Any other appliance or region?  
+
+> _```

@@ -1,0 +1,122 @@
++===================================================================================================================+
+|                               BLOOMBERG TERMINAL – SCREEN 1 – MARKET SUMMARY – 2008‑07‑11 09:30 ET                                            |
++===================================================================================================================+
+  Index              Last      Net Chg   % Chg    Day High   Day Low    Volume (M)
+  -----------------------------------------------------------------------------------------------
+  S&P 500            1,342.51   -3.19   -0.24%   1,350.20   1,335.30    1.68
+  Dow Jones          13,204.03  +16.82   +0.13%   13,250.00  13,150.00    1.21
+  Nasdaq Composite   2,605.67    +24.66   +0.96%   2,615.00   2,560.00    2.32
+  FTSE 100            5,423.69   +1.37   +0.03%   5,430.00   5,410.00    0.73
+  DAX                 8,013.45   -12.11  -0.15%   8,050.00   7,990.00    0.64
+
+  Note: Markets opening with modest gains as investors await the Apple iPhone 3G launch later in the day.
+> _
++===================================================================================================================+
+|                               BLOOMBERG TERMINAL – SCREEN 2 – AAPL EQUITY SNAPSHOT – 2008‑07‑11 09:31 ET                                            |
++===================================================================================================================+
+  Ticker  Name                      Last   Net Chg   % Chg    Volume (M)   Bid      Ask
+  -----------------------------------------------------------------------------------------------
+  AAPL    Apple Inc.                95.58   +0.88   +0.93%    40.5         95.57    95.59
+
+  Key Metrics (as of Q2‑2008):
+   • Market Cap            : $77.1 B
+   • Shares Outstanding    : 808.9 M
+   • P/E (ttm)             : 26.7
+   • EPS (ttm)             : $3.58
+   • Dividend Yield        : 1.38%
+   • 52‑wk Range           : $84.25 – $120.13
+   • Beta (5‑yr)           : 1.13
+
+  Commentary:  The stock is trading approximately 4 % above the previous day’s close, reflecting optimism ahead of the
+  July 11 iPhone 3G release.  Momentum indicators (RSI≈58) remain neutral.
+> _
++===================================================================================================================+
+|                               BLOOMBERG TERMINAL – SCREEN 3 – TOP NEWS (MORNING) – 2008‑07‑11                                            |
++===================================================================================================================+
+  1. Apple to Release iPhone 3G Today – “The next‑generation iPhone launches at 9 a.m. ET, with new 3G data speeds and App
+     Store expansion.” (Bloomberg, 07/11/2008 06:15 ET)
+
+  2. “Apple’s iPhone 3G Expected to Boost Carrier Revenues” – Analysis of AT&T & Vodafone co‑marketing deals.
+     (Reuters, 07/11/2008 07:02 ET)
+
+  3. “U.S. Markets Set for Positive Open as Tech Stocks Rally on Apple Launch” – Pre‑market commentary.
+     (CNBC, 07/11/2008 07:45 ET)
+
+  4. “Federal Reserve Holds Rates Steady; Inflation Outlook Mixed” – Macro backdrop for equity markets.
+     (Wall Street Journal, 07/11/2008 08:10 ET)
+
+  5. “Google Announces New Android Phone” – Rival smartphone news that could affect Apple’s market share.
+     (TechCrunch, 07/11/2008 08:33 ET)
+
+  6. “Europe Stock Futures Rise as Investors Await U.K. CPI Data” – European market sentiment.
+     (Financial Times, 07/11/2008 08:55 ET)
+
+  7. “Commodities: Oil Up on OPEC Production Cuts” – Energy sector background.
+     (MarketWatch, 07/11/2008 09:05 ET)
+
+  8. “Tesla Motors Announces New Roadster Delivery Schedule” – Automotive sector news.
+     (The Wall Street Journal, 07/11/2008 09:12 ET)
+
+  9. “Merrill Lynch Cuts Apple Target Price to $85 (Down 8 %); Maintains Hold” – Analyst note.
+     (Merrill Lynch Research, 07/11/2008 09:20 ET)
+
+ 10. “BMO Downgrades Apple to ‘Neutral’ – Citing Supply‑Chain Constraints” – Analyst commentary.
+     (BMO Capital Markets, 07/11/2008 09:25 ET)
+
+> _
++===================================================================================================================+
+|                               BLOOMBERG TERMINAL – SCREEN 4 – ANALYST COVERAGE & SENTIMENT – 2008‑07‑11                                            |
++===================================================================================================================+
+  Consensus Rating (12‑mo):  BUY  (8), HOLD (2), SELL (0)
+  Mean Target Price      :  $93.00  (+5.6% vs. current $95.58)
+  High Target Price      :  $105.00
+  Low Target Price       :  $84.00
+
+  Leading Analyst Comments (excerpt):
+   • Morgan Stanley – “iPhone 3G launch will sharpen Apple’s pricing power; expect EPS upside of 6‑8 % YoY.”
+   • BofA Merrill – “Supply‑chain risk remains; short‑term volatility expected, but long‑term growth intact.”
+   • Jefferies – “App Store now surpasses $2 B in revenue; strong recurring revenue stream.”
+
+  Recent Actions (last 30 days):
+   – 3 upgrades to ‘Buy’
+   – 2 downgrades to ‘Hold’
+   – 1 new coverage initiated (Goldman Sachs)
+
+  Note:  Analyst sentiment is increasingly bullish ahead of the hardware launch, with target price revisions trending upward.
+> _
++===================================================================================================================+
+|                               BLOOMBERG TERMINAL – SCREEN 5 – INTRADAY PRICE CHART (ASCII) – AAPL – 2008‑07‑11 09:35‑11:55 ET                                         |
++===================================================================================================================+
+   Time (ET)   |   Price
+  ---------------------------------
+   09:30      |   95.58  *
+   09:45      |   95.71  *
+   10:00      |   95.85  *
+   10:15      |   95.93  *
+   10:30      |   96.00  *
+   10:45      |   96.08  *
+   11:00      |   96.12  *
+   11:15      |   96.18  *
+   11:30      |   96.24  *
+   11:45      |   96.30  *
+   12:00      |   96.32  *
+
+   Chart (Price vs. Time, 0.05‑point increments):
+   96.35 ┤                                                                 *
+   96.30 ┤                                                                       *
+   96.25 ┤                                                              *
+   96.20 ┤                                                     *
+   96.15 ┤                                            *
+   96.10 ┤                                   *
+   96.05 ┤                          *
+   96.00 ┤                 *
+   95.95 ┤         *
+   95.90 ┤ *
+   95.85 ┤*
+   95.80 ┤
+   95.75 ┤
+       └─────────────────────────────────────────────────────────────────────────────
+         09:30   10:00   10:30   11:00   11:30   12:00  (ET)
+
+   Interpretation:  Steady upward drift of ~0.74 % in the first 2½ hours, reflecting strong investor enthusiasm ahead of the launch.
+> _
